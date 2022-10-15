@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <!-- v-if / else 는 형제태그이면서 인접해야지만 scope가 적용됨 -->
+        <div v-if="liked">Clicked Like button</div>
+        <button v-else v-on:click="onClickButton">Like</button>
+    </div>
+</body>
+<script>
+    var app = new Vue({
+        el: '#root',
+        data: {
+            liked: false,
+        },
+        methods: {
+            onClickButton() {                
+                //this는 data를 가르킴
+                this.liked = true; 
+            }
+        }
+    });
+</script>
+</html>
