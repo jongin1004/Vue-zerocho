@@ -10,11 +10,8 @@
 </head>
 <body>
     <div id="root">
-        <!-- v-if / else 는 형제태그이면서 인접해야지만 scope가 적용됨 -->
-        <div v-if="liked">Clicked Like button</div>
-        <button v-else v-on:click="onClickButton">Like</button>
     </div>
-
+    
     <script>
         var app = new Vue({
             el: '#root',
@@ -22,10 +19,7 @@
                 liked: false,
             },
             methods: {
-                onClickButton() {
-                    //this는 data를 가르킴
-                    this.liked = true;
-                }
+
             }
         });
     </script>

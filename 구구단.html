@@ -18,38 +18,39 @@
         <button v-on:click="onSubmitForm">제출</button>
         <div>{{ result }}</div>
     </div>
-</body>
-<script>
-    var app = new Vue({
-        el: '#root',
-        data: {
-            num1: Math.ceil(Math.random() * 9),
-            num2: Math.ceil(Math.random() * 9),
-            result: '',
-            value: '',
-        },
-        methods: {
-            onSubmitForm(e) {                
     
-                e.preventDefault();
+    <script>
+        var app = new Vue({
+            el: '#root',
+            data: {
+                num1: Math.ceil(Math.random() * 9),
+                num2: Math.ceil(Math.random() * 9),
+                result: '',
+                value: '',
+            },
+            methods: {
+                onSubmitForm(e) {
 
-                const solution = this.num1 * this.num2;         
+                    e.preventDefault();
 
-                if (parseInt(this.value) === solution) {
+                    const solution = this.num1 * this.num2;
 
-                    this.result = '정답!';
-                    this.num1 = Math.ceil(Math.random() * 9);
-                    this.num2 = Math.ceil(Math.random() * 9); 
-                           
-                } else {
+                    if (parseInt(this.value) === solution) {
 
-                    this.result = '오답!';
+                        this.result = '정답!';
+                        this.num1 = Math.ceil(Math.random() * 9);
+                        this.num2 = Math.ceil(Math.random() * 9);
+
+                    } else {
+
+                        this.result = '오답!';
+                    }
+
+                    this.value = "";
+                    this.$refs.answer.focus();
                 }
-                
-                this.value = "";
-                this.$refs.answer.focus();
             }
-        }
-    });
-</script>
+        });
+    </script>
+</body>
 </html>

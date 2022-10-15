@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <div>{{ question }}</div>
+
+        <form v-on:submit="onSubmitForm">
+            <input type="text" v-model="value" ref="answer">
+            <button>제출</button>
+            <div>{{ result }}</div>
+        </form>
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: '#root',
+            data: {
+                question: '최종인',
+                value: '',
+                result: '',
+            },
+            methods: {
+                onSubmitForm(e) {
+                    
+                    e.preventDefault();
+
+                    if (this.value.length < 2 || this.value.length > 4) {
+
+                        alert("2자리에서 4자리까지 입력가능");
+                        this.value = '';
+                        return;
+                    }
+
+                    const last_char_question = this.question.slice(-1);
+                    const last_char_value    = this.value.slice(0, 1);                    
+
+                    if (last_char_value === last_char_question) {
+
+                        this.result   = '정답';
+                        this.question = this.value;
+                    } else {
+
+                        this.result = '오답';
+                    }
+
+                    this.$refs.answer.focus();
+                    this.value = '';
+                }
+            }
+        });
+    </script>
+</body>
+</html>
