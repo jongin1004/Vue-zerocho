@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <div>{{ num1 }} 곱하기 {{ num2 }}는?</div>
+        <form v-on:submit="onSubmitForm"></form>
+        <!-- v-model를 이용해서, vue의 data와 양방향 바인등을 할 수 있음  -->
+        <!-- ref를 이용해서, id나 클레스 명을 이용해 document에 접근하는 형식으로 사용할 수 있다. -->
+        <input v-on:keyup.enter="onSubmitForm" type="text" ref="answer" v-model="value">
+        <button v-on:click="onSubmitForm">제출</button>
+        <div>{{ result }}</div>
+    </div>
+</body>
+<script>
+    var app = new Vue({
+        el: '#root',
+        data: {
+            num1: Math.ceil(Math.random() * 9),
+            num2: Math.ceil(Math.random() * 9),
+            result: '',
+            value: '',
+        },
+        methods: {
+            onSubmitForm(e) {                
+    
+                e.preventDefault();
+
+                const solution = this.num1 * this.num2;         
+
+                if (parseInt(this.value) === solution) {
+
+                    this.result = '정답!';
+                    this.num1 = Math.ceil(Math.random() * 9);
+                    this.num2 = Math.ceil(Math.random() * 9); 
+                           
+                } else {
+
+                    this.result = '오답!';
+                }
+                
+                this.value = "";
+                this.$refs.answer.focus();
+            }
+        }
+    });
+</script>
+</html>
