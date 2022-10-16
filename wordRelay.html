@@ -10,26 +10,39 @@
 </head>
 <body>
     <div id="root">
-        <div>{{ question }}</div>
-
-        <form v-on:submit="onSubmitForm">
-            <input type="text" v-model="value" ref="answer">
-            <button>제출</button>
-            <div>{{ result }}</div>
-        </form>
+        <word-relay></word-relay>
+        <word-relay></word-relay>
+        <word-relay></word-relay>
     </div>
 
     <script>
-        var app = new Vue({
-            el: '#root',
-            data: {
-                question: '최종인',
-                value: '',
-                result: '',
+        // 컴포넌트는 vue인스턴스 보다는 위에 있어야하고 메인 div인 div#root보다는 아래에 위치
+        Vue.component('word-relay', {
+            // 컴포넌트를 이용하는 경우에는 항상 최상위에 감싸는 태그가 필요하다.
+            // 형제 태그로만 이루어진 템플릿은 사용할 수 없음
+            template: `
+                <div>
+                    <div>{{ question }}</div>
+
+                    <form v-on:submit="onSubmitForm">
+                        <input type="text" v-model="value" ref="answer">
+                        <button>제출</button>
+                        <div>{{ result }}</div>
+                    </form>
+                </div>
+            `, 
+            // 컴포넌트에서는 각기 다른 data를 사용하기 위해서 기존의 data 형식과 다르게
+            // 함수처럼 return 하는 방식으로 해서 개별적인 data를 운용하도록 함 
+            data() {
+                return {
+                    question: '최종인',
+                    value: '',
+                    result: '',                
+                }
             },
             methods: {
                 onSubmitForm(e) {
-                    
+
                     e.preventDefault();
 
                     if (this.value.length < 2 || this.value.length > 4) {
@@ -40,11 +53,11 @@
                     }
 
                     const last_char_question = this.question.slice(-1);
-                    const last_char_value    = this.value.slice(0, 1);                    
+                    const last_char_value = this.value.slice(0, 1);
 
                     if (last_char_value === last_char_question) {
 
-                        this.result   = '정답';
+                        this.result = '정답';
                         this.question = this.value;
                     } else {
 
@@ -54,6 +67,17 @@
                     this.$refs.answer.focus();
                     this.value = '';
                 }
+            }
+        })
+    </script>
+    <script>        
+        const app = new Vue({
+            el: '#root',
+            data: {
+                
+            },
+            methods: {
+                
             }
         });
     </script>
