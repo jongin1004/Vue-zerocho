@@ -10,9 +10,9 @@
 </head>
 <body>
     <div id="root">
-        <word-relay></word-relay>
-        <word-relay></word-relay>
-        <word-relay></word-relay>
+        <word-relay start-word="최종인"></word-relay>
+        <word-relay start-word="불고기"></word-relay>
+        <word-relay start-word="존맛탱"></word-relay>
     </div>
 
     <script>
@@ -33,9 +33,10 @@
             `, 
             // 컴포넌트에서는 각기 다른 data를 사용하기 위해서 기존의 data 형식과 다르게
             // 함수처럼 return 하는 방식으로 해서 개별적인 data를 운용하도록 함 
+            props: ['startWord'],
             data() {
                 return {
-                    question: '최종인',
+                    question: this.startWord,
                     value: '',
                     result: '',                
                 }
