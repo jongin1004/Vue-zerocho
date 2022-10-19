@@ -1,13 +1,15 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link> |
+      <h1>Data Binding</h1>
       <router-link to="/databinding/string">STRING</router-link> |
       <router-link to="/databinding/html">HTML</router-link> |
       <router-link to="/databinding/list">LIST</router-link> |
       <router-link to="/databinding/class">CLASS</router-link> |
-      <router-link to="/databinding/style">STYLE</router-link> |
+      <router-link to="/databinding/style">STYLE</router-link>
+      <h1>Event</h1>
+      <router-link to="/event/click">CLICK</router-link> |
+      <router-link to="/event/change">CHANGE</router-link> |
     </div>
     <router-view/>
   </div>
