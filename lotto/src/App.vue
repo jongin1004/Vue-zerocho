@@ -3,8 +3,11 @@
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link> |
-      <router-link to="/databinding/string">DataBindingString</router-link> |
-      <router-link to="/databinding/html">DataBindingHtml</router-link> |
+      <router-link to="/databinding/string">STRING</router-link> |
+      <router-link to="/databinding/html">HTML</router-link> |
+      <router-link to="/databinding/list">LIST</router-link> |
+      <router-link to="/databinding/class">CLASS</router-link> |
+      <router-link to="/databinding/style">STYLE</router-link> |
     </div>
     <router-view/>
   </div>
