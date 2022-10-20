@@ -1,15 +1,22 @@
 <template>
   <div>
-    <select @change="changeDongList" v-model="cityValue">
+    <select @change="changeDongList($event)" v-model="cityValue">
       <option value="">==도시선택==</option>
       <option :value="city.cityCode" :key="city.cityCode" v-for="city in cityList" >{{ city.title }}</option>
     </select>
 
     <br />
 
+    <h3>Chage 이벤트로 함수를 통해 해결</h3>
     <select v-model="dongValue">
-      <option value="">==도시선택==</option>
       <option :value="dong.code" :key="i" v-for="(dong, i) in dongListByCity">{{ dong.dongTitle }}</option>
+    </select>
+
+    <br />
+
+    <h3>Compute이용해서 해결하기</h3>
+    <select v-model="dongValue">
+      <option :value="dong.code" :key="i" v-for="(dong, i) in filterDongListByCityCode">{{ dong.dongTitle }}</option>
     </select>
   </div>
 </template>
@@ -40,12 +47,18 @@ export default {
       dongValue: ''
     }
   },
+  computed: {
+    filterDongListByCityCode () {
+      return this.dongList.filter(dong => dong.cityCode === this.cityValue)
+    }
+  },
   setup () {},
   created () {},
   mounted () {},
   unmounted () {},
   methods: {
-    changeDongList () {
+    changeDongList (e) {
+      console.log(e)
       this.dongListByCity = this.dongList.filter(dong => dong.cityCode === this.cityValue)
     }
   }

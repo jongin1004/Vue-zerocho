@@ -10,6 +10,8 @@
       <h1>Event</h1>
       <router-link to="/event/click">CLICK</router-link> |
       <router-link to="/event/change">CHANGE</router-link> |
+      <h1>Mini Project</h1>
+      <router-link to="/project/lotto">Lotto</router-link> |
     </div>
     <router-view/>
   </div>

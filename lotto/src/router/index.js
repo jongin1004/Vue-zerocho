@@ -73,6 +73,14 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: 'event, webpackPrefetch:true' */ '../views/2_event/EventChangeView.vue')
+  },
+  {
+    path: '/project/lotto',
+    name: 'LottoGeneratorView',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: 'lotto, webpackPrefetch:true' */ '../views/lotto/LottoGeneratorView.vue')
   }
 ]
 
